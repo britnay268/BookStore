@@ -30,5 +30,34 @@ namespace BookStore
             books.TryGetValue(id, out var book);
             return book;
         }
+
+        public List<Book> GetAllBooks()
+        {
+            return books.Values.ToList();
+        }
+
+        public Book AddBook(Book book)
+        {
+            int id = books.Keys.Max() + 1;
+            book.Id = id;
+            books.Add(id, book);
+            return book;
+        }
+
+        public bool UpdateBook(Book book)
+        {
+            if (books.ContainsKey(book.Id))
+            {
+                books[book.Id] = book;
+                return true;
+            }
+            return false;
+        }
+
+        public bool DeleteBook(int id)
+        {
+            books.TryGetValue(id, out var book);
+            return books.Remove(id);
+        }
     }
 }
