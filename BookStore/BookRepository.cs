@@ -6,15 +6,11 @@ namespace BookStore
     // The BookRepository class is responsible for getting the book data from the data store
     // In this case, the data store is an in-memory dictionary
     // The data store could be a database, a web service, or any other source of data
+
+    // The BookRepository class implements the IBookRepository interface. This means it inherits the methods defined in the interface and provides its own implementation for each method.
+    // Get and store data
     public class BookRepository : IBookRepository // if you your interface hasn't been implemented, you can press ctrl + . and click on implement interface
     {
-        // The dictionary that stores the book data
-        // It will not actually be a dictionary in a real-world application
-        // It will be a database, a web service, or any other source of data
-        // For the sake of simplicity, we are using a dictionary here
-        // Your unit tests will not be able to test the actual data store
-        // Because the data store will be external to the application (e.g., a database)
-        // Your unit tests will not be accessing the data in this dictionary
 
         private readonly Dictionary<int, Book> books = new()
         {
