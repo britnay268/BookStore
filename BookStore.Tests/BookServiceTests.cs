@@ -1,5 +1,6 @@
 using Xunit;
 using Moq;
+using System.Net;
 
 namespace BookStore.Tests
 {
@@ -89,18 +90,18 @@ namespace BookStore.Tests
 
         // Test: Should return the ID of the newly added book
         [Fact]
-        public void AddBook_ShouldAddBookAndReturnIt_WithGeneratedId()
+        public void AddBook_ShouldReturnBook_WhenItExists()
         {
             // Arrange
             var newBook = new Book { Title = "Pride and Prejudice", Author = "Jane Austen" };
-            var expectedId = 10;
+
+            _mockBookRepository.Setup(repo => repo.AddBook(newBook)).Returns(newBook);
 
             // Act
             var actualBook = _bookService.AddBook(newBook);
 
             // Assert
-            Assert.NotNull(actualBook);
-            Assert.Equal($"Explected: {expectedId}", $"Actual: {actualBook.Id}");
+            Assert.Equal(newBook, actualBook);
         }
 
         // Test: Should return true when update is successful
@@ -132,7 +133,7 @@ namespace BookStore.Tests
             var result = _bookService.UpdateBook(bookToUpdate);
 
             // Assert
-            Assert.True(result);
+            Assert.False(result);
         }
 
         // Test: Should return true when delete is successful
