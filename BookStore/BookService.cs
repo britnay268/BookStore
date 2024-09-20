@@ -14,6 +14,7 @@
     // We also do not want the BookService class to be dependent on the BookRepository class
     public class BookService : IBookService // if you your interface hasn't been implemented, you can press ctrl + . and click on implement interface
     {
+        // Book service uses ibookrepository (the engine) to perform actions
         private readonly IBookRepository _bookRepository;
 
         public BookService(IBookRepository bookRepository)

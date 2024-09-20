@@ -5,6 +5,8 @@
     // In this case, the IBookRepository interface defines a single method, GetBookById
     // Interfaces are good for testing because they allow us to create mock (fake) objects that simulate the behavior of real objects
     // Mock objects are used in unit testing to isolate the code you are testing.
+
+    // This specifies the functionalities (nethods) a book repository should have. t defines what actions can be performed on books
     public interface IBookRepository
     {
         // Create a method to get all books
